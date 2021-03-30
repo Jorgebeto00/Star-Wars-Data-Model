@@ -21,8 +21,7 @@ class User(Base):
 
 class Planets(Base):
     __tablename__ = 'planets'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+   
     id = Column(Integer, primary_key=True)
     planet_name = Column(String(250), nullable=False)
     planet_climate = Column(String(250), nullable=True)
@@ -32,40 +31,28 @@ class Planets(Base):
     planet_terrain = Column(String(250), nullable=True)
     planet_url = Column(String(250), nullable=True)
 
-class Protagonists(Base):
-    __tablename__ = 'protagonists'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+class Characters(Base):
+    __tablename__ = 'characters'
+   
     id = Column(Integer, primary_key=True)
-    protagonists_name = Column(String(250), nullable=False)
-    protagonists_gender = Column(String(250), nullable=True)
-    protagonists_birthyear = Column(String(250), nullable=True)
-    protagonists_eyecolor = Column(String(250), nullable=True)
-    protagonists_haircolor = Column(String(250), nullable=True)
-    protagonists_homeworld = Column(String(250), nullable=True)
-    protagonists_height = Column(Integer, nullable=True)
+    characters_name = Column(String(250), nullable=False)
+    characters_gender = Column(String(250), nullable=True)
+    characters_birthyear = Column(String(250), nullable=True)
+    characters_eyecolor = Column(String(250), nullable=True)
+    characters_haircolor = Column(String(250), nullable=True)
+    characters_homeworld = Column(String(250), nullable=True)
+    characters_height = Column(Integer, nullable=True)
     planet_url = Column(String(250), nullable=True)
 
 class User_Favorites(Base):
     __tablename__ = 'user_favorites'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+   
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
-    protagonists_id = Column(Integer, ForeignKey('protagonists.id'))
+    characters_id = Column(Integer, ForeignKey('characters.id'))
     planets_id = Column (Integer, ForeignKey('planets.id'))
 
-class Share_Data(Base):
-    __tablename__ = 'share_data'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    facebook_account=Column(String(250),nullable=True)
-    instagram_account=Column(String(250),nullable=False)
-    data_id=Column (Integer,ForeignKey('user_favorites.id'))
-
-    def to_dict(self):
+def to_dict(self):
         return {}
 
 ## Draw from SQLAlchemy base
